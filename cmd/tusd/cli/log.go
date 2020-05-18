@@ -4,12 +4,12 @@ import (
 	"log"
 	"os"
 
-	"github.com/tus/tusd"
+	"github.com/tus/tusd/pkg/handler"
 )
 
-var stdout = log.New(os.Stdout, "[tusd] ", 0)
-var stderr = log.New(os.Stderr, "[tusd] ", 0)
+var stdout = log.New(os.Stdout, "[tusd] ", log.Ldate|log.Ltime)
+var stderr = log.New(os.Stderr, "[tusd] ", log.Ldate|log.Ltime)
 
-func logEv(eventName string, details ...string) {
-	tusd.LogEvent(stderr, eventName, details...)
+func logEv(logOutput *log.Logger, eventName string, details ...string) {
+	handler.LogEvent(logOutput, eventName, details...)
 }
